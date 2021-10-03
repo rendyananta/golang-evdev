@@ -8,7 +8,7 @@ import (
 	"os"
 	"strings"
 
-	evdev "github.com/gvalkov/golang-evdev"
+	"../golang-evdev"
 )
 
 const (
@@ -25,13 +25,13 @@ func select_device() (*evdev.InputDevice, error) {
 	if len(devices) > 0 {
 		for i := range devices {
 			dev := devices[i]
-			str := fmt.Sprintf("%-3d %-20s %-35s %s", i, dev.Fn, dev.Name, dev.Phys)
+			str := fmt.Sprintf("%-3d %-20s %-35s %-35s %s", i, dev.Fn, dev.Name, dev.Phys, dev.Ident)
 			if len(str) > max {
 				max = len(str)
 			}
 			lines = append(lines, str)
 		}
-		fmt.Printf("%-3s %-20s %-35s %s\n", "ID", "Device", "Name", "Phys")
+		fmt.Printf("%-3s %-20s %-35s %-35s %s\n", "ID", "Device", "Name", "Phys", "Ident")
 		fmt.Printf(strings.Repeat("-", max) + "\n")
 		fmt.Printf(strings.Join(lines, "\n") + "\n")
 
