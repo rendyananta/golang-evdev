@@ -123,7 +123,7 @@ func (dev *InputDevice) String() string {
 			"  ident %s\n"+
 			"  bus 0x%04x, vendor 0x%04x, product 0x%04x, version 0x%04x\n"+
 			"  events %s",
-		dev.Fn, dev.File.Fd(), dev.Name, dev.Phys, dev.Bustype,
+		dev.Fn, dev.File.Fd(), dev.Name, dev.Phys, dev.Ident, dev.Bustype,
 		dev.Vendor, dev.Product, dev.Version, evtypes_s)
 }
 
