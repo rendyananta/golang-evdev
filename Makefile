@@ -7,3 +7,7 @@ ecodes.go: ecodes.go.template
 	./bin/genecodes.py $(HEADERS) $< > $@
 
 .PHONY: ecodes.go
+
+.PHONY: test
+test:
+	go clean -testcache && go test .

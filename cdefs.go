@@ -21,18 +21,20 @@ import "syscall"
 import "unsafe"
 
 type _InputEvent C.struct_input_event
-type _InputAbsinfo C.struct_input_absinfo
+type _InputAbsInfo C.struct_input_absinfo
 type _InputId C.struct_input_id
 type _InputKeymapEntry C.struct_input_keymap_entry
 
 const (
-	sizeofInputAbsinfo     = C.sizeof_struct_input_absinfo
+	sizeofInputAbsInfo     = C.sizeof_struct_input_absinfo
 	sizeofInputId          = C.sizeof_struct_input_id
 	sizeofInputKeymapEntry = C.sizeof_struct_input_keymap_entry
 )
 
+//goland:noinspection ALL
 const MAX_NAME_SIZE = 256
 
+//goland:noinspection ALL
 const (
 	EVIOCGID      = C.EVIOCGID      // get device ID
 	EVIOCGVERSION = C.EVIOCGVERSION // get driver version

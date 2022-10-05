@@ -14,7 +14,8 @@ type InputEvent struct {
 }
 
 // Get a useful description for an input event. Example:
-//   event at 1347905437.435795, code 01, type 02, val 02
+//
+//	event at 1347905437.435795, code 01, type 02, val 02
 func (ev *InputEvent) String() string {
 	return fmt.Sprintf("event at %d.%d, code %02d, type %02d, val %02d",
 		ev.Time.Sec, ev.Time.Usec, ev.Code, ev.Type, ev.Value)
@@ -30,7 +31,7 @@ const (
 	KeyHold KeyEventState = 0x2
 )
 
-// KeyEvents are used to describe state changes of keyboards, buttons,
+// KeyEvent are used to describe state changes of keyboards, buttons,
 // or other key-like devices.
 type KeyEvent struct {
 	Event    *InputEvent
@@ -60,10 +61,10 @@ func NewKeyEvent(ev *InputEvent) *KeyEvent {
 	return kev
 }
 
-func (ev *KeyEvent) String() string {
+func (kev *KeyEvent) String() string {
 	state := "unknown"
 
-	switch ev.State {
+	switch kev.State {
 	case KeyUp:
 		state = "up"
 	case KeyHold:
@@ -73,11 +74,11 @@ func (ev *KeyEvent) String() string {
 	}
 
 	return fmt.Sprintf("key event at %d.%d, %d (%d), (%s)",
-		ev.Event.Time.Sec, ev.Event.Time.Usec,
-		ev.Scancode, ev.Event.Code, state)
+		kev.Event.Time.Sec, kev.Event.Time.Usec,
+		kev.Scancode, kev.Event.Code, state)
 }
 
-// RelEvents are used to describe relative axis value changes,
+// RelEvent are used to describe relative axis value changes,
 // e.g. moving the mouse 5 units to the left.
 type RelEvent struct {
 	Event *InputEvent
@@ -93,10 +94,10 @@ func NewRelEvent(ev *InputEvent) *RelEvent {
 	return rev
 }
 
-func (ev *RelEvent) String() string {
+func (rev *RelEvent) String() string {
 	return fmt.Sprintf("relative axis event at %d.%d, %s",
-		ev.Event.Time.Sec, ev.Event.Time.Usec,
-		REL[int(ev.Event.Code)])
+		rev.Event.Time.Sec, rev.Event.Time.Usec,
+		REL[int(rev.Event.Code)])
 }
 
 // TODO: Make this work

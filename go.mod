@@ -1,3 +1,3 @@
-module github.com/sm3142/golang-evdev
+module github.com/rendyananta/golang-evdev
 
 go 1.17

@@ -17,6 +17,7 @@ package evdev
 
 import "strings"
 
+//goland:noinspection ALL
 const (
 ${CODES}
 )

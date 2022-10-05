@@ -11,12 +11,13 @@
 //   evdev.EV[evdev.EV_KEY]  // "EV_KEY"
 //   evdev.ByEventType[EV_REL][0]  // "REL_X"
 //
-// Generated on: Linux 4.7.4-200.fc24.x86_64 #1 SMP Thu Sep 15 18:42:09 UTC 2016 x86_64
+// Generated on: Linux 5.19.13-arch1-1 #1 SMP PREEMPT_DYNAMIC Tue, 04 Oct 2022 14:36:58 +0000 x86_64
 
 package evdev
 
 import "strings"
 
+//goland:noinspection ALL
 const (
 	EV_VERSION                   = 0x010001
 	ID_BUS                       = 0
@@ -44,6 +45,7 @@ const (
 	BUS_SPI                      = 0x1C
 	BUS_RMI                      = 0x1D
 	BUS_CEC                      = 0x1E
+	BUS_INTEL_ISHTP              = 0x1F
 	FF_STATUS_STOPPED            = 0x00
 	FF_STATUS_PLAYING            = 0x01
 	FF_STATUS_MAX                = 0x01
@@ -288,7 +290,8 @@ const (
 	KEY_PAUSECD                  = 201
 	KEY_PROG3                    = 202
 	KEY_PROG4                    = 203
-	KEY_DASHBOARD                = 204
+	KEY_ALL_APPLICATIONS         = 204
+	KEY_DASHBOARD                = KEY_ALL_APPLICATIONS
 	KEY_SUSPEND                  = 205
 	KEY_CLOSE                    = 206
 	KEY_PLAY                     = 207
@@ -399,6 +402,7 @@ const (
 	BTN_TOOL_MOUSE               = 0x146
 	BTN_TOOL_LENS                = 0x147
 	BTN_TOOL_QUINTTAP            = 0x148
+	BTN_STYLUS3                  = 0x149
 	BTN_TOUCH                    = 0x14a
 	BTN_STYLUS                   = 0x14b
 	BTN_STYLUS2                  = 0x14c
@@ -428,10 +432,12 @@ const (
 	KEY_TITLE                    = 0x171
 	KEY_SUBTITLE                 = 0x172
 	KEY_ANGLE                    = 0x173
-	KEY_ZOOM                     = 0x174
+	KEY_FULL_SCREEN              = 0x174
+	KEY_ZOOM                     = KEY_FULL_SCREEN
 	KEY_MODE                     = 0x175
 	KEY_KEYBOARD                 = 0x176
-	KEY_SCREEN                   = 0x177
+	KEY_ASPECT_RATIO             = 0x177
+	KEY_SCREEN                   = KEY_ASPECT_RATIO
 	KEY_PC                       = 0x178
 	KEY_TV                       = 0x179
 	KEY_TV2                      = 0x17a
@@ -500,6 +506,9 @@ const (
 	KEY_10CHANNELSUP             = 0x1b8
 	KEY_10CHANNELSDOWN           = 0x1b9
 	KEY_IMAGES                   = 0x1ba
+	KEY_NOTIFICATION_CENTER      = 0x1bc
+	KEY_PICKUP_PHONE             = 0x1bd
+	KEY_HANGUP_PHONE             = 0x1be
 	KEY_DEL_EOL                  = 0x1c0
 	KEY_DEL_EOS                  = 0x1c1
 	KEY_INS_LINE                 = 0x1c2
@@ -525,6 +534,7 @@ const (
 	KEY_FN_F                     = 0x1e2
 	KEY_FN_S                     = 0x1e3
 	KEY_FN_B                     = 0x1e4
+	KEY_FN_RIGHT_SHIFT           = 0x1e5
 	KEY_BRL_DOT1                 = 0x1f1
 	KEY_BRL_DOT2                 = 0x1f2
 	KEY_BRL_DOT3                 = 0x1f3
@@ -571,6 +581,7 @@ const (
 	BTN_DPAD_LEFT                = 0x222
 	BTN_DPAD_RIGHT               = 0x223
 	KEY_ALS_TOGGLE               = 0x230
+	KEY_ROTATE_LOCK_TOGGLE       = 0x231
 	KEY_BUTTONCONFIG             = 0x240
 	KEY_TASKMANAGER              = 0x241
 	KEY_JOURNAL                  = 0x242
@@ -578,6 +589,10 @@ const (
 	KEY_APPSELECT                = 0x244
 	KEY_SCREENSAVER              = 0x245
 	KEY_VOICECOMMAND             = 0x246
+	KEY_ASSISTANT                = 0x247
+	KEY_KBD_LAYOUT_NEXT          = 0x248
+	KEY_EMOJI_PICKER             = 0x249
+	KEY_DICTATE                  = 0x24a
 	KEY_BRIGHTNESS_MIN           = 0x250
 	KEY_BRIGHTNESS_MAX           = 0x251
 	KEY_KBDINPUTASSIST_PREV      = 0x260
@@ -603,7 +618,66 @@ const (
 	KEY_UNMUTE                   = 0x274
 	KEY_FASTREVERSE              = 0x275
 	KEY_SLOWREVERSE              = 0x276
-	KEY_DATA                     = 0x275
+	KEY_DATA                     = 0x277
+	KEY_ONSCREEN_KEYBOARD        = 0x278
+	KEY_PRIVACY_SCREEN_TOGGLE    = 0x279
+	KEY_SELECTIVE_SCREENSHOT     = 0x27a
+	KEY_NEXT_ELEMENT             = 0x27b
+	KEY_PREVIOUS_ELEMENT         = 0x27c
+	KEY_AUTOPILOT_ENGAGE_TOGGLE  = 0x27d
+	KEY_MARK_WAYPOINT            = 0x27e
+	KEY_SOS                      = 0x27f
+	KEY_NAV_CHART                = 0x280
+	KEY_FISHING_CHART            = 0x281
+	KEY_SINGLE_RANGE_RADAR       = 0x282
+	KEY_DUAL_RANGE_RADAR         = 0x283
+	KEY_RADAR_OVERLAY            = 0x284
+	KEY_TRADITIONAL_SONAR        = 0x285
+	KEY_CLEARVU_SONAR            = 0x286
+	KEY_SIDEVU_SONAR             = 0x287
+	KEY_NAV_INFO                 = 0x288
+	KEY_BRIGHTNESS_MENU          = 0x289
+	KEY_MACRO1                   = 0x290
+	KEY_MACRO2                   = 0x291
+	KEY_MACRO3                   = 0x292
+	KEY_MACRO4                   = 0x293
+	KEY_MACRO5                   = 0x294
+	KEY_MACRO6                   = 0x295
+	KEY_MACRO7                   = 0x296
+	KEY_MACRO8                   = 0x297
+	KEY_MACRO9                   = 0x298
+	KEY_MACRO10                  = 0x299
+	KEY_MACRO11                  = 0x29a
+	KEY_MACRO12                  = 0x29b
+	KEY_MACRO13                  = 0x29c
+	KEY_MACRO14                  = 0x29d
+	KEY_MACRO15                  = 0x29e
+	KEY_MACRO16                  = 0x29f
+	KEY_MACRO17                  = 0x2a0
+	KEY_MACRO18                  = 0x2a1
+	KEY_MACRO19                  = 0x2a2
+	KEY_MACRO20                  = 0x2a3
+	KEY_MACRO21                  = 0x2a4
+	KEY_MACRO22                  = 0x2a5
+	KEY_MACRO23                  = 0x2a6
+	KEY_MACRO24                  = 0x2a7
+	KEY_MACRO25                  = 0x2a8
+	KEY_MACRO26                  = 0x2a9
+	KEY_MACRO27                  = 0x2aa
+	KEY_MACRO28                  = 0x2ab
+	KEY_MACRO29                  = 0x2ac
+	KEY_MACRO30                  = 0x2ad
+	KEY_MACRO_RECORD_START       = 0x2b0
+	KEY_MACRO_RECORD_STOP        = 0x2b1
+	KEY_MACRO_PRESET_CYCLE       = 0x2b2
+	KEY_MACRO_PRESET1            = 0x2b3
+	KEY_MACRO_PRESET2            = 0x2b4
+	KEY_MACRO_PRESET3            = 0x2b5
+	KEY_KBD_LCD_MENU1            = 0x2b8
+	KEY_KBD_LCD_MENU2            = 0x2b9
+	KEY_KBD_LCD_MENU3            = 0x2ba
+	KEY_KBD_LCD_MENU4            = 0x2bb
+	KEY_KBD_LCD_MENU5            = 0x2bc
 	BTN_TRIGGER_HAPPY            = 0x2c0
 	BTN_TRIGGER_HAPPY1           = 0x2c0
 	BTN_TRIGGER_HAPPY2           = 0x2c1
@@ -657,6 +731,9 @@ const (
 	REL_DIAL                     = 0x07
 	REL_WHEEL                    = 0x08
 	REL_MISC                     = 0x09
+	REL_RESERVED                 = 0x0a
+	REL_WHEEL_HI_RES             = 0x0b
+	REL_HWHEEL_HI_RES            = 0x0c
 	REL_MAX                      = 0x0f
 	ABS_X                        = 0x00
 	ABS_Y                        = 0x01
@@ -684,6 +761,7 @@ const (
 	ABS_TOOL_WIDTH               = 0x1c
 	ABS_VOLUME                   = 0x20
 	ABS_MISC                     = 0x28
+	ABS_RESERVED                 = 0x2e
 	ABS_MT_SLOT                  = 0x2f
 	ABS_MT_TOUCH_MAJOR           = 0x30
 	ABS_MT_TOUCH_MINOR           = 0x31
@@ -717,7 +795,8 @@ const (
 	SW_LINEIN_INSERT             = 0x0d
 	SW_MUTE_DEVICE               = 0x0e
 	SW_PEN_INSERTED              = 0x0f
-	SW_MAX                       = 0x0f
+	SW_MACHINE_COVER             = 0x10
+	SW_MAX                       = 0x10
 	MSC_SERIAL                   = 0x00
 	MSC_PULSELED                 = 0x01
 	MSC_GESTURE                  = 0x02
@@ -773,6 +852,7 @@ var ecodes = map[string]int{
 	"BUS_SPI":                      BUS_SPI,
 	"BUS_RMI":                      BUS_RMI,
 	"BUS_CEC":                      BUS_CEC,
+	"BUS_INTEL_ISHTP":              BUS_INTEL_ISHTP,
 	"FF_STATUS_STOPPED":            FF_STATUS_STOPPED,
 	"FF_STATUS_PLAYING":            FF_STATUS_PLAYING,
 	"FF_STATUS_MAX":                FF_STATUS_MAX,
@@ -1017,6 +1097,7 @@ var ecodes = map[string]int{
 	"KEY_PAUSECD":                  KEY_PAUSECD,
 	"KEY_PROG3":                    KEY_PROG3,
 	"KEY_PROG4":                    KEY_PROG4,
+	"KEY_ALL_APPLICATIONS":         KEY_ALL_APPLICATIONS,
 	"KEY_DASHBOARD":                KEY_DASHBOARD,
 	"KEY_SUSPEND":                  KEY_SUSPEND,
 	"KEY_CLOSE":                    KEY_CLOSE,
@@ -1128,6 +1209,7 @@ var ecodes = map[string]int{
 	"BTN_TOOL_MOUSE":               BTN_TOOL_MOUSE,
 	"BTN_TOOL_LENS":                BTN_TOOL_LENS,
 	"BTN_TOOL_QUINTTAP":            BTN_TOOL_QUINTTAP,
+	"BTN_STYLUS3":                  BTN_STYLUS3,
 	"BTN_TOUCH":                    BTN_TOUCH,
 	"BTN_STYLUS":                   BTN_STYLUS,
 	"BTN_STYLUS2":                  BTN_STYLUS2,
@@ -1157,9 +1239,11 @@ var ecodes = map[string]int{
 	"KEY_TITLE":                    KEY_TITLE,
 	"KEY_SUBTITLE":                 KEY_SUBTITLE,
 	"KEY_ANGLE":                    KEY_ANGLE,
+	"KEY_FULL_SCREEN":              KEY_FULL_SCREEN,
 	"KEY_ZOOM":                     KEY_ZOOM,
 	"KEY_MODE":                     KEY_MODE,
 	"KEY_KEYBOARD":                 KEY_KEYBOARD,
+	"KEY_ASPECT_RATIO":             KEY_ASPECT_RATIO,
 	"KEY_SCREEN":                   KEY_SCREEN,
 	"KEY_PC":                       KEY_PC,
 	"KEY_TV":                       KEY_TV,
@@ -1229,6 +1313,9 @@ var ecodes = map[string]int{
 	"KEY_10CHANNELSUP":             KEY_10CHANNELSUP,
 	"KEY_10CHANNELSDOWN":           KEY_10CHANNELSDOWN,
 	"KEY_IMAGES":                   KEY_IMAGES,
+	"KEY_NOTIFICATION_CENTER":      KEY_NOTIFICATION_CENTER,
+	"KEY_PICKUP_PHONE":             KEY_PICKUP_PHONE,
+	"KEY_HANGUP_PHONE":             KEY_HANGUP_PHONE,
 	"KEY_DEL_EOL":                  KEY_DEL_EOL,
 	"KEY_DEL_EOS":                  KEY_DEL_EOS,
 	"KEY_INS_LINE":                 KEY_INS_LINE,
@@ -1254,6 +1341,7 @@ var ecodes = map[string]int{
 	"KEY_FN_F":                     KEY_FN_F,
 	"KEY_FN_S":                     KEY_FN_S,
 	"KEY_FN_B":                     KEY_FN_B,
+	"KEY_FN_RIGHT_SHIFT":           KEY_FN_RIGHT_SHIFT,
 	"KEY_BRL_DOT1":                 KEY_BRL_DOT1,
 	"KEY_BRL_DOT2":                 KEY_BRL_DOT2,
 	"KEY_BRL_DOT3":                 KEY_BRL_DOT3,
@@ -1300,6 +1388,7 @@ var ecodes = map[string]int{
 	"BTN_DPAD_LEFT":                BTN_DPAD_LEFT,
 	"BTN_DPAD_RIGHT":               BTN_DPAD_RIGHT,
 	"KEY_ALS_TOGGLE":               KEY_ALS_TOGGLE,
+	"KEY_ROTATE_LOCK_TOGGLE":       KEY_ROTATE_LOCK_TOGGLE,
 	"KEY_BUTTONCONFIG":             KEY_BUTTONCONFIG,
 	"KEY_TASKMANAGER":              KEY_TASKMANAGER,
 	"KEY_JOURNAL":                  KEY_JOURNAL,
@@ -1307,6 +1396,10 @@ var ecodes = map[string]int{
 	"KEY_APPSELECT":                KEY_APPSELECT,
 	"KEY_SCREENSAVER":              KEY_SCREENSAVER,
 	"KEY_VOICECOMMAND":             KEY_VOICECOMMAND,
+	"KEY_ASSISTANT":                KEY_ASSISTANT,
+	"KEY_KBD_LAYOUT_NEXT":          KEY_KBD_LAYOUT_NEXT,
+	"KEY_EMOJI_PICKER":             KEY_EMOJI_PICKER,
+	"KEY_DICTATE":                  KEY_DICTATE,
 	"KEY_BRIGHTNESS_MIN":           KEY_BRIGHTNESS_MIN,
 	"KEY_BRIGHTNESS_MAX":           KEY_BRIGHTNESS_MAX,
 	"KEY_KBDINPUTASSIST_PREV":      KEY_KBDINPUTASSIST_PREV,
@@ -1333,6 +1426,65 @@ var ecodes = map[string]int{
 	"KEY_FASTREVERSE":              KEY_FASTREVERSE,
 	"KEY_SLOWREVERSE":              KEY_SLOWREVERSE,
 	"KEY_DATA":                     KEY_DATA,
+	"KEY_ONSCREEN_KEYBOARD":        KEY_ONSCREEN_KEYBOARD,
+	"KEY_PRIVACY_SCREEN_TOGGLE":    KEY_PRIVACY_SCREEN_TOGGLE,
+	"KEY_SELECTIVE_SCREENSHOT":     KEY_SELECTIVE_SCREENSHOT,
+	"KEY_NEXT_ELEMENT":             KEY_NEXT_ELEMENT,
+	"KEY_PREVIOUS_ELEMENT":         KEY_PREVIOUS_ELEMENT,
+	"KEY_AUTOPILOT_ENGAGE_TOGGLE":  KEY_AUTOPILOT_ENGAGE_TOGGLE,
+	"KEY_MARK_WAYPOINT":            KEY_MARK_WAYPOINT,
+	"KEY_SOS":                      KEY_SOS,
+	"KEY_NAV_CHART":                KEY_NAV_CHART,
+	"KEY_FISHING_CHART":            KEY_FISHING_CHART,
+	"KEY_SINGLE_RANGE_RADAR":       KEY_SINGLE_RANGE_RADAR,
+	"KEY_DUAL_RANGE_RADAR":         KEY_DUAL_RANGE_RADAR,
+	"KEY_RADAR_OVERLAY":            KEY_RADAR_OVERLAY,
+	"KEY_TRADITIONAL_SONAR":        KEY_TRADITIONAL_SONAR,
+	"KEY_CLEARVU_SONAR":            KEY_CLEARVU_SONAR,
+	"KEY_SIDEVU_SONAR":             KEY_SIDEVU_SONAR,
+	"KEY_NAV_INFO":                 KEY_NAV_INFO,
+	"KEY_BRIGHTNESS_MENU":          KEY_BRIGHTNESS_MENU,
+	"KEY_MACRO1":                   KEY_MACRO1,
+	"KEY_MACRO2":                   KEY_MACRO2,
+	"KEY_MACRO3":                   KEY_MACRO3,
+	"KEY_MACRO4":                   KEY_MACRO4,
+	"KEY_MACRO5":                   KEY_MACRO5,
+	"KEY_MACRO6":                   KEY_MACRO6,
+	"KEY_MACRO7":                   KEY_MACRO7,
+	"KEY_MACRO8":                   KEY_MACRO8,
+	"KEY_MACRO9":                   KEY_MACRO9,
+	"KEY_MACRO10":                  KEY_MACRO10,
+	"KEY_MACRO11":                  KEY_MACRO11,
+	"KEY_MACRO12":                  KEY_MACRO12,
+	"KEY_MACRO13":                  KEY_MACRO13,
+	"KEY_MACRO14":                  KEY_MACRO14,
+	"KEY_MACRO15":                  KEY_MACRO15,
+	"KEY_MACRO16":                  KEY_MACRO16,
+	"KEY_MACRO17":                  KEY_MACRO17,
+	"KEY_MACRO18":                  KEY_MACRO18,
+	"KEY_MACRO19":                  KEY_MACRO19,
+	"KEY_MACRO20":                  KEY_MACRO20,
+	"KEY_MACRO21":                  KEY_MACRO21,
+	"KEY_MACRO22":                  KEY_MACRO22,
+	"KEY_MACRO23":                  KEY_MACRO23,
+	"KEY_MACRO24":                  KEY_MACRO24,
+	"KEY_MACRO25":                  KEY_MACRO25,
+	"KEY_MACRO26":                  KEY_MACRO26,
+	"KEY_MACRO27":                  KEY_MACRO27,
+	"KEY_MACRO28":                  KEY_MACRO28,
+	"KEY_MACRO29":                  KEY_MACRO29,
+	"KEY_MACRO30":                  KEY_MACRO30,
+	"KEY_MACRO_RECORD_START":       KEY_MACRO_RECORD_START,
+	"KEY_MACRO_RECORD_STOP":        KEY_MACRO_RECORD_STOP,
+	"KEY_MACRO_PRESET_CYCLE":       KEY_MACRO_PRESET_CYCLE,
+	"KEY_MACRO_PRESET1":            KEY_MACRO_PRESET1,
+	"KEY_MACRO_PRESET2":            KEY_MACRO_PRESET2,
+	"KEY_MACRO_PRESET3":            KEY_MACRO_PRESET3,
+	"KEY_KBD_LCD_MENU1":            KEY_KBD_LCD_MENU1,
+	"KEY_KBD_LCD_MENU2":            KEY_KBD_LCD_MENU2,
+	"KEY_KBD_LCD_MENU3":            KEY_KBD_LCD_MENU3,
+	"KEY_KBD_LCD_MENU4":            KEY_KBD_LCD_MENU4,
+	"KEY_KBD_LCD_MENU5":            KEY_KBD_LCD_MENU5,
 	"BTN_TRIGGER_HAPPY":            BTN_TRIGGER_HAPPY,
 	"BTN_TRIGGER_HAPPY1":           BTN_TRIGGER_HAPPY1,
 	"BTN_TRIGGER_HAPPY2":           BTN_TRIGGER_HAPPY2,
@@ -1386,6 +1538,9 @@ var ecodes = map[string]int{
 	"REL_DIAL":                     REL_DIAL,
 	"REL_WHEEL":                    REL_WHEEL,
 	"REL_MISC":                     REL_MISC,
+	"REL_RESERVED":                 REL_RESERVED,
+	"REL_WHEEL_HI_RES":             REL_WHEEL_HI_RES,
+	"REL_HWHEEL_HI_RES":            REL_HWHEEL_HI_RES,
 	"REL_MAX":                      REL_MAX,
 	"ABS_X":                        ABS_X,
 	"ABS_Y":                        ABS_Y,
@@ -1413,6 +1568,7 @@ var ecodes = map[string]int{
 	"ABS_TOOL_WIDTH":               ABS_TOOL_WIDTH,
 	"ABS_VOLUME":                   ABS_VOLUME,
 	"ABS_MISC":                     ABS_MISC,
+	"ABS_RESERVED":                 ABS_RESERVED,
 	"ABS_MT_SLOT":                  ABS_MT_SLOT,
 	"ABS_MT_TOUCH_MAJOR":           ABS_MT_TOUCH_MAJOR,
 	"ABS_MT_TOUCH_MINOR":           ABS_MT_TOUCH_MINOR,
@@ -1446,6 +1602,7 @@ var ecodes = map[string]int{
 	"SW_LINEIN_INSERT":             SW_LINEIN_INSERT,
 	"SW_MUTE_DEVICE":               SW_MUTE_DEVICE,
 	"SW_PEN_INSERTED":              SW_PEN_INSERTED,
+	"SW_MACHINE_COVER":             SW_MACHINE_COVER,
 	"SW_MAX":                       SW_MAX,
 	"MSC_SERIAL":                   MSC_SERIAL,
 	"MSC_PULSELED":                 MSC_PULSELED,
